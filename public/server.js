@@ -20,8 +20,15 @@
       }, priority);
   }
 
+  function onAddedTransaction(callback) {
+    transactions
+      .startAt()
+      .on('child_added', callback);
+  }
+
   scope.server = {
     reference: reference,
-    addTransaction: addTransaction
+    addTransaction: addTransaction,
+    onAddedTransaction: onAddedTransaction
   };
 })(window);
