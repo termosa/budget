@@ -18,7 +18,7 @@
       locationName: t.location
     };
 
-    var node = document.createElement('div');
+    var node = document.createElement('article');
     node.classList.add('transaction');
     node.innerHTML = Object.keys(data)
       .reduce(function(html, prop) {
@@ -29,14 +29,14 @@
   };
 
   TransactionView.prototype._template =
-    "<h2 class=\"title\">" +
-      "<span class=\"categories\">[<a href=\"#{{categoryId}}\">{{category}}</a>]</span>" +
-      "{{title}}" +
-      "{{amount}}" +
-    "</h2>" +
+    "<ul role=\"group\" class=\"categories\">" +
+      "<li><a href=\"#{{categoryId}}\">{{category}}</a></li>" +
+    "</ul>" +
+    "<h1 class=\"title\">{{title}}</h1>" +
+    "{{amount}}" +
     "{{timestamp}}" +
-    "<p class=\"description\">{{description}}</p>" +
-    "<a href=\"{{locationUrl}}\" target=\"_blank\">{{locationName}}</a>";
+    "<footer class=\"description\">{{description}}</footer>" +
+    "<address><a href=\"{{locationUrl}}\" target=\"_blank\">{{locationName}}</a></address>";
 
   scope.TransactionView = TransactionView;
 })(window);

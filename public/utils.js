@@ -2,14 +2,14 @@
   "use strict";
 
   function formatAmount(amount, currency) {
-    return '<span class="amount">' +
+    return '<var class="amount">' +
       (currency && '<span class="currency">' + currency + '</span>' || '') +
-      amount + '</span>';
+      amount + '</var>';
   }
 
   function formatTimestamp(time) {
     var date = new Date(time);
-    return '<p class="timestamp">' + date + '</p>';
+    return '<time class="timestamp">' + date + '</time>';
   }
 
   function getCategoryId(category) {
