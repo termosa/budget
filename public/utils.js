@@ -12,8 +12,18 @@
     return '<p class="timestamp">' + date + '</p>';
   }
 
+  function getCategoryId(category) {
+    return category.toLowerCase().replace(/\s/g, '-');
+  }
+
+  function getLocationUrl(location) {
+    return location.toLowerCase().replace(/\s/g, '+');
+  }
+
   scope.util = {
     formatAmount: formatAmount,
-    formatTimestamp: formatTimestamp
+    formatTimestamp: formatTimestamp,
+    getCategoryId: getCategoryId,
+    getLocationUrl: getLocationUrl
   };
 })(window);

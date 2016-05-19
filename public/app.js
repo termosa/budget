@@ -2,27 +2,22 @@
   "use strict";
 
   var util = scope.util;
-  window.list = [];
+  var TransactionView = scope.TransactionView;
+  var Transaction = scope.Transaction;
 
-  function Transaction(transaction) {
-    Object.keys(transaction)
-      .forEach(function(prop) {
-        this[prop] = transaction[prop];
-      }.bind(this));
-  }
-  Transaction.prototype = {
-    constructor: Transaction,
-    formatTime: function() {
-      return util.formatTimestamp(this.time);
-    },
-    formatAmount: function() {
-      return util.formatAmount(this.amount, this.currency);
+  var List = {
+    element: document.querySelector('.transactions-list'),
+    _list: [],
+    push: function(transaction) {
+      var view = new TransactionView(transaction);
+      this._list.push(view);
+      this.element.appendChild(view.render());
     }
   };
 
   var server = scope.server;
-  server.onAddedTransaction(function(transaction) {
-    var trn = new Transaction(transaction.val());
-    window.list.push(trn);
+  server.onAddedTransaction(function(snapshot) {
+    var trn = new Transaction(snapshot.val());
+    List.push(trn);
   });
 })(window);
